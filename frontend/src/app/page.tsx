@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, BarChart3, Shield, TrendingUp, Zap } from "lucide-react";
+import { ArrowRight, Shield, TrendingUp, Zap } from "lucide-react";
 import Link from "next/link";
+import { Screener } from "@/components/Screener";
 
 export default function Home() {
   return (
@@ -74,44 +75,20 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Dashboard Preview / Bento Grid Section */}
+        {/* Screener Component Section */}
         <section className="py-20 px-6 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="col-span-1 md:col-span-2 p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm relative overflow-hidden group"
-            >
-              <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity">
-                <BarChart3 className="w-32 h-32 text-indigo-500" />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-2xl font-semibold mb-4">Deep Fundamental Screening</h3>
-                <p className="text-gray-400 max-w-md">
-                  Filter thousands of Indian stocks using over 150+ fundamental metrics. 
-                  Identify undervalued gems with our proprietary scoring models.
-                </p>
-                <div className="mt-8 flex gap-4">
-                  <div className="p-4 rounded-xl bg-black/40 border border-white/5">
-                    <div className="text-sm text-gray-400 mb-1">P/E Ratio</div>
-                    <div className="text-xl font-medium text-green-400">{'<'} 15.0</div>
-                  </div>
-                  <div className="p-4 rounded-xl bg-black/40 border border-white/5">
-                    <div className="text-sm text-gray-400 mb-1">ROE</div>
-                    <div className="text-xl font-medium text-green-400">{'>'} 20%</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+          <Screener />
+        </section>
 
+        {/* Feature Highlights */}
+        <section className="py-10 px-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="col-span-1 p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm relative overflow-hidden"
+              className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm relative overflow-hidden"
             >
               <div className="absolute -right-8 -bottom-8 opacity-20">
                 <Zap className="w-40 h-40 text-purple-500" />
@@ -132,29 +109,13 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="col-span-1 p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm"
+              className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm"
             >
               <Shield className="w-10 h-10 text-pink-400 mb-6" />
               <h3 className="text-xl font-semibold mb-3">Institutional Grade</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Powered by enterprise data feeds and robust backend infrastructure for uncompromised reliability and speed.
               </p>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="col-span-1 md:col-span-2 p-8 rounded-3xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-white/10 backdrop-blur-sm flex items-center justify-between"
-            >
-              <div>
-                <h3 className="text-2xl font-semibold mb-2">Ready to elevate your portfolio?</h3>
-                <p className="text-gray-400">Join thousands of smart investors trading on NSE and BSE.</p>
-              </div>
-              <button className="px-6 py-3 bg-white text-black rounded-full font-medium hover:scale-105 transition-transform">
-                Create Account
-              </button>
             </motion.div>
           </div>
         </section>
