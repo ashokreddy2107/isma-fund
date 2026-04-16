@@ -1,3 +1,4 @@
+import os
 import yfinance as yf
 from typing import Dict, Any
 
@@ -7,6 +8,8 @@ def get_stock_data(ticker_symbol: str) -> Dict[str, Any]:
     For NSE stocks, append '.NS'. For BSE, append '.BO'.
     Example: 'RELIANCE.NS'
     """
+    yf.set_tz_cache_location(f"/tmp/yf_cache_{os.getpid()}")
+
     try:
         stock = yf.Ticker(ticker_symbol)
         info = stock.info
@@ -36,6 +39,8 @@ def get_stock_news(ticker_symbol: str) -> list:
     Fetches recent news for a given ticker using yfinance.
     Note: yfinance news can sometimes be limited, but serves as a good starter.
     """
+    yf.set_tz_cache_location(f"/tmp/yf_cache_{os.getpid()}")
+
     try:
         stock = yf.Ticker(ticker_symbol)
         news = stock.news
