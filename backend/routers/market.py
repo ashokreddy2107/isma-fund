@@ -32,3 +32,29 @@ async def get_market_data(ticker: str):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+from tasks.newsletter import generate_daily_newsletter, redis_client
+
+@router.post("/newsletter/trigger")
+async def trigger_newsletter():
+    try:
+        generate_daily_newsletter()
+        return {"message": "Newsletter generated, sent, and cached successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/newsletter/latest")
+async def get_latest_newsletter():
+    try:
+        # Prefer JSON structured data
+        json_content = redis_client.get("latest_newsletter_json")
+        if json_content:
+            import json
+            return json.loads(json_content)
+            
+        content = redis_client.get("latest_newsletter")
+        if not content:
+            return {"content": "No newsletter has been generated yet today.", "stocks": []}
+        return {"content": content, "stocks": []}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

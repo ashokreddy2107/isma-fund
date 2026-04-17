@@ -41,7 +41,8 @@ export function Screener() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:8000/api/market/${ticker.trim()}`);
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${baseUrl}/api/market/${ticker.trim()}`);
       if (!response.ok) {
         throw new Error('Failed to fetch data. Please check the ticker symbol.');
       }

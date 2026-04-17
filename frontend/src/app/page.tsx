@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Shield, TrendingUp, Zap } from "lucide-react";
 import Link from "next/link";
 import { Screener } from "@/components/Screener";
+import { NewsletterFeed } from "@/components/NewsletterFeed";
 
 export default function Home() {
   return (
@@ -78,6 +79,7 @@ export default function Home() {
         {/* Screener Component Section */}
         <section className="py-20 px-6 max-w-7xl mx-auto">
           <Screener />
+          <NewsletterFeed />
         </section>
 
         {/* Feature Highlights */}
